@@ -25,7 +25,7 @@ async function listDependabotAlerts(): Promise<DependabotAlert[] | null> {
     const { data } = await api.request(
       "GET /repos/{owner}/{repo}/dependabot/alerts",
       {
-        owner: vscode.workspace.getConfiguration("github-security.dependabot").get("selectRemoteRepository") ?? store.repo!.owner,
+        owner: store.repo!.owner,
         repo: store.repo!.name,
         per_page: 100,
         sort: "updated",
