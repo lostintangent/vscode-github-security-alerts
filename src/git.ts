@@ -1,5 +1,6 @@
 import * as vscode from "vscode";
 import { Store } from "./store";
+import config from "./config";
 
 export interface Remote {
   readonly name: string;
@@ -60,7 +61,7 @@ function checkGitHubRemote(git: GitAPI, store: Store) {
       );
 
       store.repo = {
-        owner: match[1],
+        owner: config.dependabot.specifyUpstreamOwner ?? match[1],
         name: match[2],
       };
     }
@@ -79,7 +80,7 @@ export async function initializeGit(store: Store) {
     } else {
       const repoDisposable = git.onDidOpenRepository((repository) => {
         repoDisposable.dispose();
-  
+
         const stateDisposable = repository.state.onDidChange(() => {
           if (hasRemotes(repository)) {
             stateDisposable.dispose();
@@ -87,6 +88,6 @@ export async function initializeGit(store: Store) {
           }
         });
       });
-    }  
+    }
   }
 }

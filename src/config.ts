@@ -10,11 +10,11 @@ export default {
         set showDevelopmentDependencies(value: boolean) {
             config.update("showDevelopmentDependencies", value);
         },
-        get selectRemoteRepository() {
-            return config.get("selectRemoteRepository", "");
+        get specifyUpstreamOwner() {
+            return config.get("specifyUpstreamOwner", "");
         },
-        set selectRemoteRepository(value: string) {
-            config.update("selectRemoteRepository", value);
+        set specifyUpstreamOwner(value: string) {
+            config.update("specifyUpstreamOwner", value);
         }
     }
 }
