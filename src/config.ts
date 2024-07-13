@@ -9,6 +9,12 @@ export default {
         },
         set showDevelopmentDependencies(value: boolean) {
             config.update("showDevelopmentDependencies", value);
+        },
+        get selectRemoteRepository() {
+            return config.get("selectRemoteRepository", "");
+        },
+        set selectRemoteRepository(value: string) {
+            config.update("selectRemoteRepository", value);
         }
     }
 }

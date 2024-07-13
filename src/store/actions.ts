@@ -1,6 +1,7 @@
 import { runInAction } from "mobx";
 import { CodeScanningAlert, DependabotAlert, store } from ".";
 import { getApi } from "./auth";
+import * as vscode from "vscode";
 
 export async function enableDependabot() {
   const api = await getApi();
@@ -24,7 +25,7 @@ async function listDependabotAlerts(): Promise<DependabotAlert[] | null> {
     const { data } = await api.request(
       "GET /repos/{owner}/{repo}/dependabot/alerts",
       {
-        owner: store.repo!.owner,
+        owner: vscode.workspace.getConfiguration("github-security.dependabot").get("selectRemoteRepository") ?? store.repo!.owner,
         repo: store.repo!.name,
         per_page: 100,
         sort: "updated",

@@ -35,6 +35,11 @@
           "default": "true",
           "type": "boolean",
           "description": "Specifies whether to show alerts for development-only dependencies."
+        },
+        "github-security.dependabot.selectRemoteRepository": {
+          "type": "string",
+          "default": "",
+          "description": "Specifies the remote repository to use for Dependabot alerts."
         }
       }
     },
