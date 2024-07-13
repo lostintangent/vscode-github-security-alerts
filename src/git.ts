@@ -60,8 +60,10 @@ function checkGitHubRemote(git: GitAPI, store: Store) {
         true
       );
 
+      const hasSpecifiedUpstreamOwner = config.dependabot.specifyUpstreamOwner && config.dependabot.specifyUpstreamOwner.trim().length > 0;
+
       store.repo = {
-        owner: config.dependabot.specifyUpstreamOwner ?? match[1],
+        owner: hasSpecifiedUpstreamOwner ? config.dependabot.specifyUpstreamOwner : config.dependabot.specifyUpstreamOwner ?? match[1],
         name: match[2],
       };
     }
